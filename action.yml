@@ -21,13 +21,12 @@ branding:
 runs:
   using: "composite"
   steps:
-    - name: Setup Node and Cache with npm
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 12
         cache: "npm"
-
     - run: node $GITHUB_ACTION_PATH/bin/action.min.js
+      shell: bash
 inputs:
   repoToken:
     description: "The GITHUB_TOKEN secret"
