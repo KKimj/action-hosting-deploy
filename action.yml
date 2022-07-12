@@ -19,8 +19,15 @@ branding:
   icon: "globe"
   color: "blue"
 runs:
-  using: "node12"
-  main: "bin/action.min.js"
+  using: "composite"
+  steps:
+    - name: Setup Node and Cache with npm
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: "npm"
+
+    - run: node $GITHUB_ACTION_PATH/bin/action.min.js
 inputs:
   repoToken:
     description: "The GITHUB_TOKEN secret"
